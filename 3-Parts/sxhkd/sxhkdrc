@@ -3,40 +3,24 @@ super + Return
    alacritty
 
 # program launcher
-super + d
+alt + space
     rofi -show drun
 
 # open wifi menu
 super + i
-    /home/mahmoud/.bin/rofi-wifi-menu.sh
-
-# open bluetooth menu
-super + b
-    /home/mahmoud/.bin/rofi-bluetooth
+    /home/none/.bin/rofi-wifi-menu.sh
 
 # open powermenu
 super + p
-    /home/mahmoud/.bin/rofi-powermenu
-
-# open mpd menu
-super + m
-    /home/mahmoud/.bin/rofi-mpc
+    /home/none/.bin/rofi-powermenu
 
 # launch software
-super + {w,f,s,t}
-    {firefox,pcmanfm,spotify,kotatogram-desktop}
+super + {b,e,t,l,m}
+    {brave, pcmanfm, telegram-desktop, lollypop, teams}
 
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
-
-# turn on redshift
-super + shift + o
-    redshift -t 6500:4900 -l 3.2476811:101.74012689999999 &
-
-# turn off redshift
-super + shift + k
-    pkill redshift
 
 # set the window state
 super + shift + {w,e}
@@ -83,8 +67,8 @@ super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
 # full screenshot, selection area, full in 5 seconds
-Print + {_,shift,alt}
-    flameshot {full -p,gui -p,full -d 5000 -p} /home/mahmoud/Screenshots
+Print + {_,shift}
+    flameshot {full -p, gui -p} /home/none/Pictures/Screenshots
 
 # increase/decrease volume by 5%
 XF86Audio{Raise,Lower}Volume
@@ -108,4 +92,4 @@ super + alt + {q,r}
 
 # reload configurations
 super + shift + r
-    pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+    pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Configs reloaded'
