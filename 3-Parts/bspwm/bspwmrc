@@ -13,11 +13,11 @@ sxhkd &
 # start libinput-gestures
 libinput-gestures-setup start
 
-# set keyboard layouts en, ara
+# set keyboard layouts en, ar
 setxkbmap -model pc104 -layout us,ara -variant ,, -option grp:alt_shift_toggle &
 
-# start auth app
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# start auth app (KDE)
+/usr/lib/polkit-gnome/polkit-kde-authentication-agent-1 &
 
 # picom
 picom -b
@@ -27,6 +27,9 @@ dunst -conf ~/config/dunst/dunstrc &
 
 #swap the winKey with altKey
 xmodmap -v ~/.modmap
+
+#enable the numlock
+numlockx on
 
 # power manager
 xfce4-power-manager &
@@ -62,3 +65,4 @@ bspc config pointer_action3 resize_corner
 
 # some window rules
 bspc rule -a feh state=floating follow=on
+bspc rule -a mplayer2 state=floating
