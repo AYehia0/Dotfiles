@@ -22,6 +22,9 @@ setxkbmap -model pc104 -layout us,ara -variant ,, -option grp:alt_shift_toggle &
 # picom
 picom -b
 
+#enable the notification-daemon
+dunst -conf ~/config/dunst/dunstrc &
+
 # power manager
 xfce4-power-manager &
 
