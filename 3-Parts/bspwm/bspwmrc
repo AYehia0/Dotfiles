@@ -25,6 +25,9 @@ picom -b
 #enable the notification-daemon
 dunst -conf ~/config/dunst/dunstrc &
 
+#swap the winKey with altKey
+xmodmap -v ~/.modmap
+
 # power manager
 xfce4-power-manager &
 
