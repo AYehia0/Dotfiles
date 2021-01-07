@@ -326,7 +326,7 @@ label-muted = "  muted  "
 type = internal/date
 interval = 1
 date = %a, %d %B
-time = %I:%M %
+time = %I:%M %p
 label-font = 2
 label = "  %date% | %time% "
 label-foreground = ${colors.background}
@@ -344,7 +344,7 @@ label-song-ellipsis = true
 [module/powermenu]
 type = custom/script
 exec = echo "襤"
-label-font
+format-online = <label-font>
 click-left = cd ~/bin && ./menu_powermenu.sh
 format-background = #89beba
 format-foreground = ${colors.background}
