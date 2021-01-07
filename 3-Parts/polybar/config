@@ -45,34 +45,6 @@ modules-center = pulseaudio xbacklight battery wifi lang
 wm-restack = bspwm
 override-redirect = true
 
-[bar/middle]
-width = 16%
-height = 35px
-offset-x = 42.5%
-offset-y = 10
-radius = 10
-fixed-center = true
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 0
-module-margin-right = 0
-
-font-0 = Scientifica:style=Bold:size=11;3
-font-1 = Scientifica:style=Bold:size=13;3
-font-2 = TerminessTTF Nerd Font:size=15:antialias=true;3
-font-3 = Material Icons:size=15:antialias=true;3
-font-4 = DejaVu Sans Mono
-
-modules-center = spotify2
-
-wm-restack = bspwm
-override-redirect = true
-
 [bar/left]
 width = 27.1%
 height = 35px
@@ -160,7 +132,7 @@ label-urgent-padding = 2
 
 [module/wifi]
 type = internal/network
-interface = wlp3s0
+interface = wlan0
 interval = 3.0
 tail = true
 click-left = cd ~/bin && ./rofi-wifi-menu.sh
@@ -191,7 +163,7 @@ type = internal/battery
 
 full-at = 99
 
-battery = BAT0
+battery = BAT1
 adapter = ADP0
 
 poll-interval = 2
@@ -234,7 +206,8 @@ animation-charging-foreground = ${colors.magenta}
 animation-charging-framerate = 750
 
 [module/xbacklight]
-type = internal/xbacklight
+type = internal/backlight
+card = amdgpu_bl0
 format = <label>
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
@@ -258,30 +231,6 @@ format-prefix = " "
 interval = 0.1
 format-prefix-foreground = ${colors.blue}
 format-prefix-background = ${colors.background}
-
-[module/spotify]
-type = custom/script
-format-prefix-padding-left = 2
-format-prefix = "  "
-click-left = playerctl play-pause
-format-prefix-background = #a7c080
-format-prefix-foreground = ${colors.background}
-interval = 1
-format = "<label>  "
-format-background = #a7c080
-format-foreground = ${colors.background}
-exec = python /home/mahmoud/.bin/spotify_status.py -f '{artist} - {song}'
-
-[module/spotify2]
-type = custom/script
-click-left = playerctl play-pause
-exec = ~/.bin/song.sh 2>/dev/null || echo "No player found"
-;exec = ~/.bin/song.sh 2>/dev/null
-format = "<label>  "
-format-prefix = "%{T4}%{F#79e6f3}    %{F-}%{T-}"
-interval = 1
-
-tail = true
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -331,15 +280,6 @@ label-font = 2
 label = "  %date% | %time% "
 label-foreground = ${colors.background}
 label-background = ${colors.foreground}
-
-[module/mpdee]
-type = internal/mpd
-format-online =  <label-song>
-format-online-background = ${colors.background}
-format-online-foreground = ${colors.yellow}
-format-online-padding = 2
-label-song-maxlen = 25
-label-song-ellipsis = true
 
 [module/powermenu]
 type = custom/script
