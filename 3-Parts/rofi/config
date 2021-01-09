@@ -9,5 +9,6 @@ rofi.separator-style:       none
 rofi.hide-scrollbar:        true
 rofi.line-margin:           0
 rofi.font:                  San Francisco Display 12
-rofi.theme:                 /home/mahmoud/.config/rofi/black-moon.rasi
+rofi.theme:                 /home/none/.config/rofi/black-moon.rasi
+
 
