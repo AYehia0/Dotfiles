@@ -70,7 +70,7 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x050505'
+    background: '0x0D0D0D'
     foreground: '0xEEEEEE'
     selection:
     text: '0x282a36'
@@ -98,4 +98,4 @@ colors:
     white:   '0xbebec1'
 
 
-background_opacity: 1.0
+background_opacity: 0.8 
