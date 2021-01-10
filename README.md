@@ -4,11 +4,12 @@
 
 This is my first time trying a Tiling window manager.
 
-Here's some ss:
 
-![SimpleHome]("/screenshots/cleaned-home.png") 
+## Here's some ss:
 
-![Home]("/screenshots/home.png") 
+![SimpleHome](/screenshots/cleaned-home.png) 
+
+![Home](/screenshots/home.png) 
 
 
 
