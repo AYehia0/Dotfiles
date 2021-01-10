@@ -2,18 +2,27 @@
 
 ;; ==================== COLORS ======================
 [colors]
-background = #050505
-foreground = #EEEEEE
+background = #D1D1D1
+foreground = #000000
 
 black       = ${xrdb:Polybar.color0}
 red         = ${xrdb:Polybar.color1}
-green       = ${xrdb:Polybar.color2}
+green       = #00BB00
 yellow      = ${xrdb:Polybar.color3}
 blue        = ${xrdb:Polybar.color4}
-magenta     = ${xrdb:Polybar.color5}
+magenta     = #E305E3
 cyan        = ${xrdb:Polybar.color6}
 white       = ${xrdb:Polybar.color7}
 accent      = #0080F8
+
+cool = #cf5176
+redish = #ab776d
+greenish = #c2f542
+blueish = #2550db
+bg4 = #cca9bc
+txt = #FFFFFF
+orangish = #EA4235
+
 
 ;; ===================== BARS ========================
 
@@ -40,17 +49,16 @@ font-2 = TerminessTTF Nerd Font:size=15:antialias=true;3
 font-3 = Material Icons:size=15:antialias=true;3
 font-4 = DejaVu Sans Mono
 
-modules-center = pulseaudio xbacklight battery wifi lang
-
+modules-center = volume memory xbacklight cpu battery wifi
 wm-restack = bspwm
 override-redirect = true
 
 [bar/left]
-width = 27.1%
+width = 19.2%
 height = 35px
 offset-x = 11
 offset-y = 10
-radius = 10
+radius = 0
 fixed-center = true
 
 background = ${colors.background}
@@ -82,10 +90,15 @@ pin-workspaces = true
 enable-click = true
 enable-scroll = true
 
-format = <label-state>
+format = <label-state> <label-mode>
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
-label-monitor = %name%
+label-monitor = %index%
+
 label-focused-background = ${colors.accent}
 label-occupied-background = ${colors.background}
 label-urgent-background = ${colors.red}
@@ -135,7 +148,7 @@ type = internal/network
 interface = wlan0
 interval = 3.0
 tail = true
-click-left = cd ~/bin && ./rofi-wifi-menu.sh
+;click-left = cd ~/bin && ./rofi-wifi-menu.sh
 
 format-connected = <ramp-signal><label-connected>
 format-connected-foreground = ${colors.foreground}
@@ -217,59 +230,61 @@ scroll = true
 exec = ~/.bin/light.sh
 scroll-up = exec light -A 10
 scroll-down = exec light -U 10
-format-prefix-foreground = ${colors.red}
+format-prefix-foreground = ${colors.redish}
 format-prefix = "  "
 
-[module/lang]
-type = custom/script
-exec = ~/.bin/lang.sh
-format-padding = 2
-format-foreground = ${colors.foreground}
+[module/cpu]
+type = internal/cpu
+
+interval = 1
+wanr-percentage = 90
+
+format = <label>
+format-prefix =
 format-background = ${colors.background}
-format-prefix-padding = 0
-format-prefix = " "
-interval = 0.1
-format-prefix-foreground = ${colors.blue}
-format-prefix-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-padding= 2
+format-fontsize = 13
+label = "  %{F${colors.orangish}%percentage%%%{F-}"
+label-foreground = ${colors.orangish}
 
-[module/pulseaudio]
+[module/memory]
+type = internal/memory
+
+interval = 3
+warn-percentace = 80
+format = <label>
+format-prefix =
+label-foreground = #fc0388
+label-background = ${colors.background}
+;label-foreground = ${colors.foreground}
+label-padding = 2
+format-fontsize = 13
+label = "  %{F${colors.foreground}%percentage_used%%%{F-}"
+
+[module/volume]
 type = internal/pulseaudio
-format-volume = "<bar-volume><label-volume>"
-label-volume =  " %percentage%%  "
-label-volume-background = ${colors.background}
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-padding = 2
+format-volume-background = ${colors.background}
+
+label-volume = " %percentage%%"
 label-volume-foreground = ${colors.foreground}
-label-muted-foreground = ${colors.foreground}
-label-muted-background = ${colors.background}
+label-muted = "婢"
+label-muted-background = ${colors.bg4}
+label-muted-foreground = ${colors.txt}
+label-muted-padding = 2
 
-ramp-volume-0 = "  "
-ramp-volume-1 = "  "
-ramp-volume-2 = "  "
-ramp-volume-foreground = ${colors.yellow}
-ramp-volume-background = ${colors.background}
+ramp-volume-0 = 奄
+ramp-volume-1 = 奄
+ramp-volume-2 = 奔
+ramp-volume-3 = 奔
+ramp-volume-4 = 墳
+ramp-volume-5 = 墳
+ramp-volume-6 = 
 
-bar-volume-fill-padding-left = 2
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.magenta}
-bar-volume-foreground-5 = ${colors.magenta}
-bar-volume-foreground-6 = ${colors.red}
-bar-volume-gradient = false
-bar-volume-indicator =
-bar-volume-indicator-background = ${colors.background}
-bar-volume-background = ${colors.background}
-bar-volume-indicator-font =
-bar-volume-fill = |
-bar-volume-fill-background = ${colors.background}
-bar-volume-fill-font =
-bar-volume-empty = =
-bar-volume-empty-font =
-bar-volume-empty-foreground = ${colors.foreground}
-bar-volume-empty-background = ${colors.background}
-
-label-muted = "  muted  "
+ramp-volume-foreground = ${colors.blueish}
 
 [module/time]
 type = internal/date
@@ -279,7 +294,7 @@ time = %I:%M %p
 label-font = 2
 label = "  %date% | %time% "
 label-foreground = ${colors.background}
-label-background = ${colors.foreground}
+label-background = ${colors.cool}
 
 [module/powermenu]
 type = custom/script
